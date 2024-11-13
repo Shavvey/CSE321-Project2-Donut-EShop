@@ -60,6 +60,17 @@ h1 {
   display: none;
 }
 
+.circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: dark-blue;
+  color: blue;
+  min-width: 1em;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {display: none;}
   .topnav a.icon {

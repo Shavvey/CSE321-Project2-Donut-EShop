@@ -9,11 +9,14 @@
     <link href="index.css" rel="stylesheet"> 
 </head>
 <body>
+	<%
+		ArrayList<Donut> cart = (ArrayList<Donut>) session.getAttribute("cart");
+	%>
 	<div class="topnav" id="menu-topnav">
 		<a class="active">Menu</a>
 		<a href="eserv">Employee</a>
 		<a>Admin</a>
-		<a href="cserv">Cart</a>
+		<a href="cserv">Cart</a> <div class="circle"><%= cart.size() %></div>
 	</div>
     <h1>Sprinkle Squad Donuts</h1>
     <div class="donut-container">
@@ -38,8 +41,7 @@
             	<button type="submit"> + </button>
             	</form>
             </div> 
-           
-            
+             
             
         <%
             }

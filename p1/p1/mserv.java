@@ -30,6 +30,13 @@ public class mserv extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		// Retrieve the cart (an ArrayList) from the session, or create a new one if it doesn't exist
+	    HttpSession session = request.getSession();
+        ArrayList<Donut> cart = (ArrayList<Donut>) session.getAttribute("cart");
+        if(cart == null) {
+        	cart = new ArrayList<>();
+            session.setAttribute("cart", cart);
+        }
 		request.getRequestDispatcher("menu.jsp").forward(request, response);
 	}
 	
@@ -51,7 +58,7 @@ public class mserv extends HttpServlet {
         }
         int check = -1;
        if(!cart.isEmpty()) {
-          for (Donut d: cart) {
+          for (Donut d : cart) {
         	if(d.getDonutID() == selectedDonut.getDonutID())
         	{
         		check = cart.indexOf(d);
