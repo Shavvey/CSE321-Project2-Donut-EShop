@@ -3,20 +3,20 @@ package p1;
 import java.util.ArrayList;
 
 
-public class donutMenu {
+public class DonutMenu {
 	
-	ArrayList <donut> list; 
+	ArrayList <Donut> list; 
 	
-	public donutMenu()
+	public DonutMenu()
 	{
-		list = new ArrayList<donut>();	
+		list = new ArrayList<Donut>();	
 	}
 
-	public ArrayList<donut> getList() {
+	public ArrayList<Donut> getList() {
 		return list;
 	}
 
-	public void setList(ArrayList<donut> list) {
+	public void setList(ArrayList<Donut> list) {
 		this.list = list;
 	}
 

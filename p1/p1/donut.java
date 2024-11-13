@@ -1,6 +1,6 @@
 package p1;
 
-public class donut {
+public class Donut {
 	
 	
 	private Integer donutID;
@@ -11,12 +11,12 @@ public class donut {
 	
 	
 	
-	public donut()
+	public Donut()
 	{
 		
 	}
 	
-	public donut(Integer donutID, String type, String flavor, String price, String description)
+	public Donut(Integer donutID, String type, String flavor, String price, String description)
 	{
 		this.donutID = donutID;
 		this.type = type;

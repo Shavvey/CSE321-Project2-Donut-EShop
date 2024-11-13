@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@ page import= "java.util.ArrayList, java.util.*, p1.buildmenu, p1.donut, p1.donutMenu" %>
+<%@ page import= "java.util.ArrayList, java.util.*,p1.BuildMenu,p1.Donut,p1.DonutMenu" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -41,11 +41,11 @@
 </head>
 <body>
 <%
-	buildmenu ourmenu = new buildmenu();
+BuildMenu ourmenu = new BuildMenu();
 	
 	String p = request.getParameter("donutid");
 	Integer id = Integer.parseInt(p);
-	donut d = ourmenu.getDbyId(id);
+	Donut d = ourmenu.getDbyId(id);
 %>
 
 <center> <div class = "donut-tile"> 
@@ -57,4 +57,4 @@
 </div> </center>
 
 </body>
-<
+</html>
