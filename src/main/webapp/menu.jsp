@@ -16,7 +16,7 @@
 		<a class="active">Menu</a>
 		<a href="eserv">Employee</a>
 		<a>Admin</a>
-		<a href="cserv">Cart</a> <div class="circle"><%= cart.size() %></div>
+		<a href="cserv">Cart</a> <div class="circle"><%= Donut.getTotal(cart) %></div>
 	</div>
     <h1>Sprinkle Squad Donuts</h1>
     <div class="donut-container">

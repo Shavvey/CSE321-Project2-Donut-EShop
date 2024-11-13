@@ -68,7 +68,7 @@ public class cserv extends HttpServlet {
         		stmt.setDate(4,date);
                 int rowsUpdated = stmt.executeUpdate();
                 if (rowsUpdated > 0) {
-                    response.getWriter().write("Student record updated successfully.");
+                	request.getRequestDispatcher("order.jsp").forward(request, response);
                 } else {
                     response.getWriter().write("Inserted values into the table");
                 }

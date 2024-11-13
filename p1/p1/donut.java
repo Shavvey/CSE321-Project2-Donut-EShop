@@ -1,5 +1,7 @@
 package p1;
 
+import java.util.ArrayList;
+
 public class Donut {
 	
 	
@@ -71,7 +73,13 @@ public class Donut {
 		this.quantity = quantity;
 	}
 
-	
+	public static int getTotal(ArrayList<Donut> cart) {
+		int total = 0;
+		for (Donut d : cart) {
+			total += d.getQuantity();
+		}
+		return total;
+	}
 	
 	
 
