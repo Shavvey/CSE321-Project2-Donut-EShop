@@ -4,12 +4,11 @@ public class Donut {
 	
 	
 	private Integer donutID;
+	private Integer quantity;
 	private String type;
 	private String flavor;
 	private String price;
 	private String description;
-	
-	
 	
 	public Donut()
 	{
@@ -64,6 +63,14 @@ public class Donut {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public Integer getQuantity() {
+		return quantity;
+	}
+	
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
 	
 	
 	

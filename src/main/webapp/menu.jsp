@@ -13,13 +13,15 @@
 		<a class="active">Menu</a>
 		<a href="eserv">Employee</a>
 		<a>Admin</a>
-		<a>Cart</a>
+		<a href="cserv">Cart</a>
 	</div>
     <h1>Sprinkle Squad Donuts</h1>
     <div class="donut-container">
-        <%
-        BuildMenu ourmenu = new BuildMenu();
+        <%  
+            BuildMenu ourmenu = new BuildMenu();
             ArrayList<Donut> ourdonuts = ourmenu.getMenu();
+           
+
             for (Donut d : ourdonuts) {
         %>
             <div class="donut-tile">
@@ -27,10 +29,22 @@
                 <p>Type: <%= d.getType() %></p>
                 <p>Flavor: <%= d.getFlavor() %></p>
                 <p>Price: $<%= d.getPrice() %></p>
+                <form action="mserv" method="post">
+                 <input type="hidden" name="donutID" value="<%= d.getDonutID() %>" />
+                    <input type="hidden" name="donutType" value="<%= d.getType() %>" />
+                    <input type="hidden" name="donutFlavor" value="<%= d.getFlavor() %>" />
+                    <input type="hidden" name="donutPrice" value="<%= d.getPrice() %>" />
+                    <input type="hidden" name="donutDesc" value="<%= d.getDescription() %>" />
+            	<button type="submit"> + </button>
+            	</form>
             </div> 
+           
+            
+            
         <%
             }
         %>
     </div>
 </body>
 </html>
+

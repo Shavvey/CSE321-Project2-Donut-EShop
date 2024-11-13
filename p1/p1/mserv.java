@@ -1,16 +1,19 @@
 package p1;
 
-import java.io.IOException; 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class mserv
  */
-@WebServlet("/smerv")
+@WebServlet("/mserv")
 public class mserv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,5 +32,42 @@ public class mserv extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.getRequestDispatcher("menu.jsp").forward(request, response);
 	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String donutID = request.getParameter("donutID");
+        String donutType = request.getParameter("donutType");
+        String donutFlavor = request.getParameter("donutFlavor");
+        String donutPrice = request.getParameter("donutPrice");
+        String donutDesc = request.getParameter("donutDesc");
+        Donut selectedDonut = new Donut(Integer.parseInt(donutID), donutType, donutFlavor, donutPrice, donutDesc);
+        HttpSession session = request.getSession();
+        selectedDonut.setQuantity(1);
 
+        // Retrieve the cart (an ArrayList) from the session, or create a new one if it doesn't exist
+        ArrayList<Donut> cart = (ArrayList<Donut>) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new ArrayList<>();
+        }
+        int check = -1;
+       if(!cart.isEmpty()) {
+          for (Donut d: cart) {
+        	if(d.getDonutID() == selectedDonut.getDonutID())
+        	{
+        		check = cart.indexOf(d);
+        	}
+        }}
+        if(check == -1) {
+        cart.add(selectedDonut);
+        }
+        else {
+        	int quantity = cart.get(check).getQuantity() + 1;
+        	cart.get(check).setQuantity(quantity);
+        } 
+        session.setAttribute("cart", cart);
+        
+		doGet(request, response);
+	}
+	
 }
+

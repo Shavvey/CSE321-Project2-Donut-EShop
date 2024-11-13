@@ -1,40 +1,26 @@
 package p1;
 
-import jakarta.servlet.ServletException; 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import jakarta.servlet.annotation.HttpConstraint;
-import jakarta.servlet.annotation.HttpMethodConstraint;
-import jakarta.servlet.annotation.ServletSecurity;
-
+import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class eserv
+ * Servlet implementation class rserv
  */
-@WebServlet("/eserv")
-@ServletSecurity(
-value = @HttpConstraint(
-                rolesAllowed = {
-                        "employee"
-                }),
-        httpMethodConstraints = {
-                @HttpMethodConstraint(value = "GET", rolesAllowed = {
-                        "employee"
-                }),
-                @HttpMethodConstraint(value = "POST", rolesAllowed = {
-                        "employee"
-                })
-        })
-public class eserv extends HttpServlet {
+@WebServlet("/rserv")
+public class rserv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public eserv() {
+    public rserv() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,7 +30,7 @@ public class eserv extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("employee.jsp").forward(request, response);
+		request.getRequestDispatcher("cart.jsp").forward(request, response);
 	}
 
 	/**
@@ -52,6 +38,29 @@ public class eserv extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String donutID = request.getParameter("donutID");
+		HttpSession session = request.getSession();
+		ArrayList<Donut> cart = (ArrayList<Donut>) session.getAttribute("cart");
+		int key = -1;
+		for(Donut d: cart)
+		{
+			if(d.getDonutID() == Integer.parseInt(donutID))
+			{
+				key = cart.indexOf(d);
+			}
+		}
+		if(key != -1) {
+		if(cart.get(key).getQuantity() == 1)
+		{
+			cart.remove(key);
+		}
+		else
+		{
+			int quant = cart.get(key).getQuantity();
+			cart.get(key).setQuantity(quant - 1);
+		}
+		}
+		doGet(request, response);
 	}
 
 }
