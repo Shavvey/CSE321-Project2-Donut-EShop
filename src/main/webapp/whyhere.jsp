@@ -7,9 +7,8 @@
 <title>Error</title>
 </head>
 <body>
-<h2> 404 not found </h2>
-<p> Hello, you shouldn't be here :3. Please head back </p>
-<a href = "mserv"> Go Home </a>
-
+  <h2> 404 not found </h2>
+  <p> Hello, you shouldn't be here :3. Please head back </p>
+  <a href = "mserv"> Go Home </a>
 </body>
 </html>

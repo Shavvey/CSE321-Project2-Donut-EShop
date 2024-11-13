@@ -16,14 +16,13 @@
         ArrayList<Donut> cart = (ArrayList<Donut>) sess.getAttribute("cart");
     %><ul> <%
     for (Donut d: cart) {
-    %>
-    <li>Type: <%= d.getType() %> Flavor: <%= d.getFlavor() %> 
-    Price: <%= d.getPrice() %> Quantity: <%=d.getQuantity()%></li>
-    <%
+      %>
+      <li>Type: <%= d.getType() %> Flavor: <%= d.getFlavor() %> 
+      Price: <%= d.getPrice() %> Quantity: <%=d.getQuantity()%></li>
+      <%
     }
     cart.clear();
     %>
-    
     <a href="mserv">Home</a>
 </body>
 </html>
