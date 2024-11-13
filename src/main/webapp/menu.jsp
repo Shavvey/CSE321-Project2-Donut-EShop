@@ -10,8 +10,8 @@
 </head>
 <body>
 	<div class="topnav" id="menu-topnav">
-		<a href=""">Menu</a>
-		<a>Employee</a>
+		<a class="active">Menu</a>
+		<a href="eserv">Employee</a>
 		<a>Admin</a>
 		<a>Cart</a>
 	</div>

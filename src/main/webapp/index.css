@@ -33,6 +33,7 @@ h1 {
 .topnav {
   overflow: hidden;
   background-color: #1313;
+  justify-content: center;
 }
 
 .topnav a {
