@@ -8,6 +8,9 @@
 </head>
 <body>
 <h1>Modify Inventory</h1>
+<%-- first we need to get the inventory again --%>
+<%
+%>
 <a href="mserv">Back to Menu</a>
 </body>
 </html>
