@@ -19,6 +19,7 @@ p {
 OrdersList list = new OrdersList();
 %>
 <!-- generate the orders that are closed given a timestamp -->
+        <h1> Sales: </h1>
 	<h1> Totals this Week </h1>
 		<p> $<%= list.weeklyTotal() %> </p>
 	<h1>Totals this Month</h1>
