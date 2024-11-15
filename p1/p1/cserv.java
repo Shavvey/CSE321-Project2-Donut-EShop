@@ -57,6 +57,7 @@ public class cserv extends HttpServlet {
     ArrayList<Donut> cart = (ArrayList<Donut>)session.getAttribute("cart");
     String name = request.getParameter("name");
     String card = request.getParameter("card");
+    String status = "OPEN";
     float total = 0;
     for (Donut d : cart) {
       total += Double.parseDouble(d.getPrice()) * d.getQuantity();
@@ -65,7 +66,7 @@ public class cserv extends HttpServlet {
     try (Connection conn = DriverManager.getConnection(
              "jdbc:mysql://localhost:3306/donutdb", "root", "colej123");) {
       String sql = "INSERT INTO doughnut_orders (Name, CardNumber, Total, " +
-                   "Timestamp) VALUES (?, ?, ?, ?);";
+                   "Timestamp, Status) VALUES (?, ?, ?, ?, ?);";
 
       try (PreparedStatement stmt = conn.prepareStatement(sql)) {
         Date date = new Date(Calendar.getInstance().getTimeInMillis());
@@ -73,6 +74,7 @@ public class cserv extends HttpServlet {
         stmt.setString(2, card);
         stmt.setFloat(3, total);
         stmt.setDate(4, date);
+        stmt.setString(5, status);
         int rowsUpdated = stmt.executeUpdate();
         if (rowsUpdated > 0) {
           for (Donut d : cart) {

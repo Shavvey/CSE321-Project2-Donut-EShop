@@ -67,7 +67,7 @@ CREATE TABLE `doughnut_orders` (
 
 LOCK TABLES `doughnut_orders` WRITE;
 /*!40000 ALTER TABLE `doughnut_orders` DISABLE KEYS */;
-INSERT INTO `doughnut_orders` VALUES (12,'Billy Joel','13131414',10,'2024-11-14','open'),(23,'Billy Joel','14141414',5,'2024-11-14','open');
+INSERT INTO `doughnut_orders` VALUES (12,'Billy Joel','13131414',10,'2025-11-14','open'),(23,'Billy Joel','14141414',5,'2024-11-23','open');
 /*!40000 ALTER TABLE `doughnut_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

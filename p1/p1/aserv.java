@@ -37,7 +37,8 @@ public class aserv extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("admin.jsp");
+		// generate weekly,monthly, and yearly total
+		request.getRequestDispatcher("admin.jsp").forward(request, response);
 	}
 
 	/**

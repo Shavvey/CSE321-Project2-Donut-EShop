@@ -78,7 +78,7 @@ public class eserv extends HttpServlet {
 	      }
 	    } catch (SQLException e) {
 	      e.printStackTrace();
-	      response.getWriter().write("Error updating student record.");
+	      response.getWriter().write("Error updating orders!.");
 	    }
 	   	request.getRequestDispatcher("employee.jsp").forward(request,response);
   }
