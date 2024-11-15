@@ -56,7 +56,7 @@ public class OrdersList {
 		float total = 0;
 		for (Order o : list) {
 			Date date = o.getTimeStamp();
-			if(!date.after(afterWindow) || !date.before(beforeWindow)) {
+			if(!date.after(afterWindow) && !date.before(beforeWindow)) {
 				total += o.getTotal();
 				
 			}
@@ -75,7 +75,7 @@ public class OrdersList {
 		float total = 0;
 		for (Order o : list) {
 			Date date = o.getTimeStamp();
-			if(!date.after(afterWindow) || !date.before(beforeWindow)) {
+			if(!date.after(afterWindow) && !date.before(beforeWindow)) {
 				total += o.getTotal();
 				
 			}
@@ -94,7 +94,7 @@ public class OrdersList {
 		float total = 0;
 		for (Order o : list) {
 			Date date = o.getTimeStamp();
-			if(!date.after(afterWindow) || !date.before(beforeWindow)) {
+			if(!date.after(afterWindow) && !date.before(beforeWindow)) {
 				total += o.getTotal();
 				
 			}

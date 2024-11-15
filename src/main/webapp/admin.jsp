@@ -20,11 +20,11 @@ OrdersList list = new OrdersList();
 %>
 <!-- generate the orders that are closed given a timestamp -->
 	<h1> Totals this Week </h1>
-		<p> <%= list.weeklyTotal() %> </p>
+		<p> $<%= list.weeklyTotal() %> </p>
 	<h1>Totals this Month</h1>
-		<p> <%= list.monthlyTotal() %> </p>
+		<p> $<%= list.monthlyTotal() %> </p>
 	<h1> Totals this Year</h1>	
-		<p> <%= list.yearlyTotal() %> </p>
+		<p> $<%= list.yearlyTotal() %> </p>
 	<br/>
 	<a href="mserv">Back to Menu</a>
 </body>
