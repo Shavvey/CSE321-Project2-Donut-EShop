@@ -7,39 +7,19 @@
 <meta charset="UTF-8">
 <title> Some Donut</title>
 <style>
-        body {
-            font-family: Georgia, serif;
-            background-color: #6AB2CB;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #FCFCFC;
-        }
-        .donut-tile {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin: 20px;
-            padding: 15px;
-            text-align: center;
-            display: inline-block;
-            width: calc(33% - 75px); /* Three tiles per row with space */
-            vertical-align: top;
-        }
-        .donut-tile h2 {
-            margin: 10px 0;
-            color: #333;
-        }
-        .donut-tile p {
-            margin: 5px 0;
-            color: #666;
-        }
+      <link href="index.css" rel="stylesheet">  
 </style>
 </head>
 <body>
+<%
+		ArrayList<Donut> cart = (ArrayList<Donut>) session.getAttribute("cart");
+%>
+<div class="topnav" id="menu-topnav">
+		<a class="active" href="mserv">Menu</a>
+		<a href="eserv">Employee</a>
+		<a href = "aserv"> Admin</a>
+		<a href="cserv">Cart</a> <div class="circle"><%= Donut.getTotal(cart) %></div>
+	</div>
 <%
 BuildMenu ourmenu = new BuildMenu();
 	
@@ -55,6 +35,15 @@ BuildMenu ourmenu = new BuildMenu();
 <p> Price: <%= d.getPrice() %></p>
 <p> <%= d.getDescription() %></p>
 <p> Quantity Available: <%= d.getAvailableQuantity() %></p>
+<form action="serv" method="post">
+	<input type="hidden" name="donutID" value="<%= d.getDonutID() %>" />
+        <input type="hidden" name="donutType" value="<%= d.getType() %>" />
+        <input type="hidden" name="donutFlavor" value="<%= d.getFlavor() %>" />
+        <input type="hidden" name="donutPrice" value="<%= d.getPrice() %>" />
+        <input type="hidden" name="donutDesc" value="<%= d.getDescription() %>" />
+        <input type="hidden" name="availableQuantity" value="<%= d.getAvailableQuantity() %>" />
+        <button type="submit"> + </button>
+</form>
 </div> </center>
 
 </body>
