@@ -48,7 +48,11 @@ public class mserv extends HttpServlet {
         String donutFlavor = request.getParameter("donutFlavor");
         String donutPrice = request.getParameter("donutPrice");
         String donutDesc = request.getParameter("donutDesc");
-        Donut selectedDonut = new Donut(Integer.parseInt(donutID), donutType, donutFlavor, donutPrice, donutDesc);
+        String quantityAvailable = request.getParameter("availableQuantity");
+        
+        Donut selectedDonut = new Donut(Integer.parseInt(donutID), donutType, donutFlavor, 
+        		donutPrice, donutDesc, Integer.parseInt(quantityAvailable));
+        
         HttpSession session = request.getSession();
         selectedDonut.setQuantity(1);
 
@@ -60,17 +64,20 @@ public class mserv extends HttpServlet {
         int check = -1;
        if(!cart.isEmpty()) {
           for (Donut d : cart) {
-        	if(d.getDonutID() == selectedDonut.getDonutID())
-        	{
+        	if(d.getDonutID() == selectedDonut.getDonutID()) {
         		check = cart.indexOf(d);
-        	}
-        }}
+        	}	
+          } 
+        }
         if(check == -1) {
-        cart.add(selectedDonut);
+        	cart.add(selectedDonut);
         }
         else {
-        	int quantity = cart.get(check).getQuantity() + 1;
-        	cart.get(check).setQuantity(quantity);
+        	boolean overflow = selectedDonut.getAvailableQuantity()  <  cart.get(check).getQuantity() + 1;
+        	if(!overflow) {
+        		int quantity = cart.get(check).getQuantity() + 1;
+            	cart.get(check).setQuantity(quantity);
+        	}
         } 
         session.setAttribute("cart", cart);
         

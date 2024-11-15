@@ -10,16 +10,18 @@ public class Donut {
   private String flavor;
   private String price;
   private String description;
+  private int quantityAvailable;
 
   public Donut() {}
 
   public Donut(Integer donutID, String type, String flavor, String price,
-               String description) {
+               String description, int quantityAvailable) {
     this.donutID = donutID;
     this.type = type;
     this.price = price;
     this.flavor = flavor;
     this.description = description;
+    this.quantityAvailable = quantityAvailable;
   }
 
   public Integer getDonutID() { return donutID; }
@@ -43,9 +45,12 @@ public class Donut {
   public void setDescription(String description) {
     this.description = description;
   }
+  
   public Integer getQuantity() { return quantity; }
 
   public void setQuantity(Integer quantity) { this.quantity = quantity; }
+ 
+  public int getAvailableQuantity() { return this.quantityAvailable; }
 
   public static int getTotal(ArrayList<Donut> cart) {
     int total = 0;
@@ -54,4 +59,5 @@ public class Donut {
     }
     return total;
   }
+  
 }

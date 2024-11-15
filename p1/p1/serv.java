@@ -50,8 +50,9 @@ public class serv extends HttpServlet {
     String donutFlavor = request.getParameter("donutFlavor");
     String donutPrice = request.getParameter("donutPrice");
     String donutDesc = request.getParameter("donutDesc");
+    String availableQuan = request.getParameter("availableQuantity");
     Donut selectedDonut = new Donut(Integer.parseInt(donutID), donutType,
-                                    donutFlavor, donutPrice, donutDesc);
+                                    donutFlavor, donutPrice, donutDesc, Integer.parseInt(availableQuan));
     HttpSession session = request.getSession();
     selectedDonut.setQuantity(1);
 

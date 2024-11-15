@@ -54,6 +54,7 @@ BuildMenu ourmenu = new BuildMenu();
 <p> Flavor: <%= d.getFlavor() %></p>
 <p> Price: <%= d.getPrice() %></p>
 <p> <%= d.getDescription() %></p>
+<p> Quantity Available: <%= d.getAvailableQuantity() %></p>
 </div> </center>
 
 </body>

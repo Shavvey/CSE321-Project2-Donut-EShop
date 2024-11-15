@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -73,6 +75,34 @@ public class cserv extends HttpServlet {
         stmt.setDate(4, date);
         int rowsUpdated = stmt.executeUpdate();
         if (rowsUpdated > 0) {
+          for (Donut d : cart) {
+        	  String getMenuItem = "SELECT AvailableQuantity FROM doughnut_menu WHERE ProductKey = ?";
+              PreparedStatement getMenuItemStmt = conn.prepareStatement(getMenuItem);
+              getMenuItemStmt.setInt(1,d.getDonutID());   
+              if (getMenuItemStmt.executeQuery() != null) {
+            	  ResultSet rs = getMenuItemStmt.executeQuery();
+            	  ResultSetMetaData rsmd = rs.getMetaData();
+            	  int columnsNumber = rsmd.getColumnCount();
+            	
+            	  if(rs.next()) {
+            		  String colVal = rs.getString(1);
+            		  int aq = Integer.parseInt(colVal);
+            		  System.out.println(aq);           		
+            		  aq -= d.getQuantity();
+            		  String updateMenuItem = "UPDATE doughnut_menu SET AvailableQuantity = ? WHERE ProductKey = ?";
+                	  PreparedStatement updateMenuStmt = conn.prepareStatement(updateMenuItem);
+                	  updateMenuStmt.setInt(1, aq);
+                	  updateMenuStmt.setInt(2, d.getDonutID());
+                	  int err = updateMenuStmt.executeUpdate();          
+            	  }
+            	 
+              } else {
+            	  System.err.println("Could not execute!");
+              }
+             
+              
+          }
+          
           request.getRequestDispatcher("order.jsp").forward(request, response);
         } else {
           response.getWriter().write("Inserted values into the table");
@@ -80,7 +110,7 @@ public class cserv extends HttpServlet {
       }
     } catch (SQLException e) {
       e.printStackTrace();
-      response.getWriter().write("Error updating student record.");
+      response.getWriter().write("Error updating menu!");
     }
   }
 }

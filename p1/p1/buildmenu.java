@@ -25,9 +25,10 @@ public class BuildMenu {
       while (records.next()) {
         String ids = records.getString("ProductKey");
         Integer id = Integer.parseInt(ids);
+        int quantityAvailable = Integer.parseInt(records.getString("AvailableQuantity"));
         Donut newElement = new Donut(
             id, records.getString("Doughnut"), records.getString("Type"),
-            records.getString("Price"), records.getString("pageinfo"));
+            records.getString("Price"), records.getString("pageinfo"), quantityAvailable);
         menu.add(newElement);
       }
 

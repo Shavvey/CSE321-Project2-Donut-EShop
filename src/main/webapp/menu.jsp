@@ -32,12 +32,14 @@
                 <p>Type: <%= d.getType() %></p>
                 <p>Flavor: <%= d.getFlavor() %></p>
                 <p>Price: $<%= d.getPrice() %></p>
+                <p>Quantity Available: <%=d.getAvailableQuantity()%> </p>
                 <form action="mserv" method="post">
                  <input type="hidden" name="donutID" value="<%= d.getDonutID() %>" />
                     <input type="hidden" name="donutType" value="<%= d.getType() %>" />
                     <input type="hidden" name="donutFlavor" value="<%= d.getFlavor() %>" />
                     <input type="hidden" name="donutPrice" value="<%= d.getPrice() %>" />
                     <input type="hidden" name="donutDesc" value="<%= d.getDescription() %>" />
+                    <input type="hidden" name="availableQuantity" value="<%= d.getAvailableQuantity() %>" />
             	<button type="submit"> + </button>
             	</form>
             </div> 
