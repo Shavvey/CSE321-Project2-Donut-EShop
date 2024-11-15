@@ -56,6 +56,7 @@ CREATE TABLE `doughnut_orders` (
   `CardNumber` varchar(255) DEFAULT NULL,
   `Total` float DEFAULT NULL,
   `Timestamp` date DEFAULT NULL,
+  `Status` enum('open','closed') DEFAULT NULL,
   PRIMARY KEY (`OrderID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -66,7 +67,7 @@ CREATE TABLE `doughnut_orders` (
 
 LOCK TABLES `doughnut_orders` WRITE;
 /*!40000 ALTER TABLE `doughnut_orders` DISABLE KEYS */;
-INSERT INTO `doughnut_orders` VALUES (12,'Billy Joel','13131414',10,'2024-11-14'),(13,'cole','1314141414',10,'2024-11-14'),(14,'cole','13131313',5,'2024-11-14'),(15,'Cole','14141414',5,'2024-11-14'),(16,'Cole','14141414',5,'2024-11-14'),(17,'Cole','13131313',10,'2024-11-14'),(18,'Cole','16171719',5,'2024-11-14'),(19,'Cole','16171719',5,'2024-11-14'),(20,'Cole','16171719',5,'2024-11-14'),(21,'Cole','13131313',5,'2024-11-14'),(22,'Cole','13131313',5,'2024-11-14'),(23,'Billy Joel','14141414',5,'2024-11-14');
+INSERT INTO `doughnut_orders` VALUES (12,'Billy Joel','13131414',10,'2024-11-14','open'),(23,'Billy Joel','14141414',5,'2024-11-14','open');
 /*!40000 ALTER TABLE `doughnut_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -79,4 +80,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-14 20:10:45
+-- Dump completed on 2024-11-14 21:14:32

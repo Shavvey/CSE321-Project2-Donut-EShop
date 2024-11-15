@@ -68,13 +68,9 @@ public class eserv extends HttpServlet {
     // TODO Auto-generated method stub
 	  // get all the sent params
 	  int OrderID = Integer.parseInt(request.getParameter("OrderID"));
-	  String name = request.getParameter("name");
-	  String cardNum = request.getParameter("cardNumber");
-	  float total = Float.parseFloat(request.getParameter("total"));
-	  Date timeStamp = Date.valueOf(request.getParameter("timeStamp"));
 	   try (Connection conn = DriverManager.getConnection(
 	             "jdbc:mysql://localhost:3306/donutdb", "root", "colej123");) {
-	      String sql = "DELETE FROM doughnut_orders WHERE OrderID = ?";
+	      String sql = "UPDATE doughnut_orders SET Status='CLOSED' WHERE OrderID = ?";
 
 	      try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 	    	stmt.setInt(1, OrderID);

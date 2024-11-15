@@ -25,7 +25,8 @@ public class OrdersList {
 	          String cardNum = records.getString("CardNumber");
 	          float total = records.getFloat("Total");
 	          Date date = records.getDate("Timestamp");
-	          Order order = new Order(OrderID, name, cardNum, total, date);
+	          String status = records.getString("Status");
+	          Order order = new Order(OrderID, name, cardNum, total, date, status);
 	          list.add(order);
 	        }
 
