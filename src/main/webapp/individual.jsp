@@ -6,9 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title> Some Donut</title>
-<style>
-      <link href="index.css" rel="stylesheet">  
-</style>
+<link href="index.css" rel="stylesheet">  
 </head>
 <body>
 <%
