@@ -1,15 +1,16 @@
 package p1;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 public class OrdersList {
-	ArrayList<Order> list;
+	public ArrayList<Order> list;
 	
-	OrdersList() {
+	public OrdersList() {
 		this.list = new ArrayList<>();
 		
 	    try {
@@ -24,7 +25,8 @@ public class OrdersList {
 	          String cardNum = records.getString("CardNumber");
 	          float total = records.getFloat("Total");
 	          Date date = records.getDate("Timestamp");
-	          Order order = new Order(OrderID,name,cardNum,total,date))
+	          Order order = new Order(OrderID, name, cardNum, total, date);
+	          list.add(order);
 	        }
 
 	      } catch (Exception e) {
@@ -32,4 +34,10 @@ public class OrdersList {
 	      }
 		
 	}
+	
+	public boolean isEmpty() {
+		return list.size() == 0;
+	}
+	
+	
 }

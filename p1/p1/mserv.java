@@ -37,6 +37,7 @@ public class mserv extends HttpServlet {
         	cart = new ArrayList<>();
             session.setAttribute("cart", cart);
         }
+        
 		request.getRequestDispatcher("menu.jsp").forward(request, response);
 	}
 	

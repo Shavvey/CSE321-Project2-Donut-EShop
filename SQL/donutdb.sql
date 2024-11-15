@@ -28,6 +28,7 @@ CREATE TABLE `doughnut_menu` (
   `Type` text,
   `Price` double DEFAULT NULL,
   `pageinfo` text,
+  `AvailableQuantity` int DEFAULT '20',
   PRIMARY KEY (`ProductKey`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -38,7 +39,7 @@ CREATE TABLE `doughnut_menu` (
 
 LOCK TABLES `doughnut_menu` WRITE;
 /*!40000 ALTER TABLE `doughnut_menu` DISABLE KEYS */;
-INSERT INTO `doughnut_menu` VALUES (1,'Raised','Glazed',5,'it\'s basic but it still tastes good'),(2,'Raised','Sugar',5,'good luck getting the sugar of your hands'),(3,'Raised','Chocolate',5,'perfect for eating with your morning coffee'),(4,'Cake','Plain',7,'Our Plain Cake Donut (It\'s quite good)'),(5,'Cake','Chocolate',7,'Our Chocolate Cake Donut - For the chocolate cake lovers'),(6,'Cake','Sugar',7,'Our Cake Donut covered in sugar - what\'s not to love?'),(7,'Filled','Lemon',8,'Lemon filled doughnut - a perfect tart blend.'),(8,'Filled','Grape',8,'If you love grapes, you\'ll love our amazing jelly grape filled donut.'),(9,'Filled','Custard',8,'Enjoy a tasty doughnut with our homemade custard. So good it\'s been a family recipe for centuries.');
+INSERT INTO `doughnut_menu` VALUES (1,'Raised','Glazed',5,'it\'s basic but it still tastes good',NULL),(2,'Raised','Sugar',5,'good luck getting the sugar of your hands',NULL),(3,'Raised','Chocolate',5,'perfect for eating with your morning coffee',NULL),(4,'Cake','Plain',7,'Our Plain Cake Donut (It\'s quite good)',NULL),(5,'Cake','Chocolate',7,'Our Chocolate Cake Donut - For the chocolate cake lovers',NULL),(6,'Cake','Sugar',7,'Our Cake Donut covered in sugar - what\'s not to love?',NULL),(7,'Filled','Lemon',8,'Lemon filled doughnut - a perfect tart blend.',NULL),(8,'Filled','Grape',8,'If you love grapes, you\'ll love our amazing jelly grape filled donut.',NULL),(9,'Filled','Custard',8,'Enjoy a tasty doughnut with our homemade custard. So good it\'s been a family recipe for centuries.',NULL);
 /*!40000 ALTER TABLE `doughnut_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +57,7 @@ CREATE TABLE `doughnut_orders` (
   `Total` float DEFAULT NULL,
   `Timestamp` date DEFAULT NULL,
   PRIMARY KEY (`OrderID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +66,7 @@ CREATE TABLE `doughnut_orders` (
 
 LOCK TABLES `doughnut_orders` WRITE;
 /*!40000 ALTER TABLE `doughnut_orders` DISABLE KEYS */;
-INSERT INTO `doughnut_orders` VALUES (1,'Billy Joel','13131313',12,'2024-11-12'),(2,'Joanne Jonna','14141414',17,'2024-11-13'),(3,'Joanne Jonna','14141414',12,'2024-11-13'),(4,'Oden Odis','16171719',7,'2024-11-13'),(5,'Oden Odis','16171719',10,'2024-11-13'),(6,'Billy Joel','16171719',5,'2024-11-13'),(7,'Jill Biden','1414141414',17,'2024-11-13'),(8,'Bill Billson','141515113',10,'2024-11-13'),(9,'Joanne Jonna','14141414',22,'2024-11-13');
+INSERT INTO `doughnut_orders` VALUES (12,'Billy Joel','13131414',10,'2024-11-14');
 /*!40000 ALTER TABLE `doughnut_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -78,4 +79,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-13 11:38:15
+-- Dump completed on 2024-11-14 18:21:58

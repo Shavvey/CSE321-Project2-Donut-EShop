@@ -1,6 +1,6 @@
 package p1;
 
-import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletException; 
 import jakarta.servlet.annotation.HttpConstraint;
 import jakarta.servlet.annotation.HttpMethodConstraint;
 import jakarta.servlet.annotation.ServletSecurity;
@@ -9,6 +9,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Calendar;
 
 /**
  * Servlet implementation class eserv
@@ -23,12 +29,22 @@ import java.io.IOException;
     })
 public class eserv extends HttpServlet {
   private static final long serialVersionUID = 1L;
+  Connection conn;
 
   /**
-   * @see HttpServlet#HttpServlet()
+   * @throws ClassNotFoundException 
+ * @see HttpServlet#HttpServlet()
    */
-  public eserv() {
+  public eserv() throws ClassNotFoundException {
     super();
+
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/donutdb",
+                                            "root", "colej123");
+    } catch(SQLException ex) {
+    	ex.printStackTrace();
+    }
     // TODO Auto-generated constructor stub
   }
 
@@ -50,5 +66,24 @@ public class eserv extends HttpServlet {
                         HttpServletResponse response)
       throws ServletException, IOException {
     // TODO Auto-generated method stub
+	  // get all the sent params
+	  int OrderID = Integer.parseInt(request.getParameter("OrderID"));
+	  String name = request.getParameter("name");
+	  String cardNum = request.getParameter("cardNumber");
+	  float total = Float.parseFloat(request.getParameter("total"));
+	  Date timeStamp = Date.valueOf(request.getParameter("timeStamp"));
+	   try (Connection conn = DriverManager.getConnection(
+	             "jdbc:mysql://localhost:3306/donutdb", "root", "colej123");) {
+	      String sql = "DELETE FROM doughnut_orders WHERE OrderID = ?";
+
+	      try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+	    	stmt.setInt(1, OrderID);
+	        stmt.executeUpdate();
+	      }
+	    } catch (SQLException e) {
+	      e.printStackTrace();
+	      response.getWriter().write("Error updating student record.");
+	    }
+	   	request.getRequestDispatcher("employee.jsp").forward(request,response);
   }
 }
