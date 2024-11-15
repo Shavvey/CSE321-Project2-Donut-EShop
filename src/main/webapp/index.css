@@ -32,8 +32,9 @@ h1 {
 }
 .topnav {
   overflow: hidden;
-  background-color: #1313;
+  background-color: #5a9db7;
   justify-content: center;
+  border-radius: 8px;
 }
 
 .topnav a {
@@ -52,7 +53,7 @@ h1 {
 }
 
 .topnav a.active {
-  background-color: #04aa6d;
+  background-color: #3a7290;
   color: white;
 }
 
