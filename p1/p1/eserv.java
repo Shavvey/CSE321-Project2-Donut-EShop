@@ -21,11 +21,11 @@ import java.util.Calendar;
  */
 @WebServlet("/eserv")
 @ServletSecurity(
-    value = @HttpConstraint(rolesAllowed = {"employee"}),
+    value = @HttpConstraint(rolesAllowed = {"employee","admin"}),
     httpMethodConstraints =
     {
-      @HttpMethodConstraint(value = "GET", rolesAllowed = {"employee"})
-      , @HttpMethodConstraint(value = "POST", rolesAllowed = {"employee"})
+      @HttpMethodConstraint(value = "GET", rolesAllowed = {"employee","admin"})
+      , @HttpMethodConstraint(value = "POST", rolesAllowed = {"employee","admin"})
     })
 public class eserv extends HttpServlet {
   private static final long serialVersionUID = 1L;
