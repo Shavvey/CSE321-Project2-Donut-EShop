@@ -11,6 +11,14 @@
 p {
   text-align: center;
 }
+a {
+    padding: 3px 3px;
+    border-radius: 3px;
+    color: buttontext;
+    background-color: buttonface;
+    text-decoration: none;
+    text-align: center;
+}
 </style>
 </head>
 <body>
@@ -27,6 +35,6 @@ OrdersList list = new OrdersList();
 	<h1> Totals this Year</h1>	
 		<p> $<%= list.yearlyTotal() %> </p>
 	<br/>
-	<a href="mserv">Back to Menu</a>
+	<center><a href="mserv">Back to Menu</a> </center>
 </body>
 </html>
