@@ -42,12 +42,12 @@ public class Order {
 	}
 	
 	public boolean isClosed() {
-		return status.equals("closed");
+		return status.equals("CLOSED");
 	
 	}
 	
 	public boolean isOpen() {
-		return status.equals("open");
+		return status.equals("OPEN");
 	}
 
 }
