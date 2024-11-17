@@ -9,8 +9,8 @@
 <link href="cart.css" rel="stylesheet"/>
 </head>
 <body>
-<h1>Your Cart</h1>
 <div class="content">
+<h1>Your Cart</h1>
     <%
     	HttpSession sesh = request.getSession();
         // Retrieve the cart from the session
@@ -19,11 +19,12 @@
         if (cart == null || cart.isEmpty()) {
     %>
         <p>Your cart is empty!</p>
+        <p> Current Total: $0.00 </p>
     <% } else {
     %><ul> <%
     for (Donut d: cart) { 
     %>
-    <li>Type: <%= d.getType() %> Flavor: <%= d.getFlavor() %> Price: <%= d.getPrice() %> Quantity: <%= d.getQuantity() %>
+    <li>Type: <%= d.getType() %> Flavor: <%= d.getFlavor() %> Price Per Donut: <%= d.getPrice() %> Quantity: <%= d.getQuantity() %>
     <form action="rserv" method="post">
                 <input type="hidden" name="donutID" value="<%= d.getDonutID() %>" />
             	<button type="submit"> - </button>
@@ -31,8 +32,19 @@
     </li>
                 
     <%} %>
+    
+    
     </ul>
-    <br/>
+    <br>
+ 	<% 
+    float total = 0;
+    for (Donut d : cart) {
+      total += Double.parseDouble(d.getPrice()) * d.getQuantity();
+    }
+    %>
+    Current Total: <%= total %>
+<br>
+    <h1>Checkout:</h1>
  <% } %>
     <form action = "cserv" method = "POST">
     	<label for="name">Enter your name: </label>
