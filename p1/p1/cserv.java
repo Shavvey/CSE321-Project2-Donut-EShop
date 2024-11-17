@@ -84,7 +84,7 @@ public class cserv extends HttpServlet {
         	double donutPrice = d.getQuantity() * Double.parseDouble(d.getPrice());
         	String cakeType = d.getType();
         	String flavorType = d.getFlavor();
-        	String transactionEntry = String.format("%d donut(s) of type %s with a flavor of %s for %.2f",
+        	String transactionEntry = String.format("%d Donut(s) of type %s with a flavor of %s for %.2f",
         			ammount, cakeType, flavorType, donutPrice);
         	if(itrs != last) {
         		transactionEntry = transactionEntry.concat(","); // concat comma if this isn't the last cart entry

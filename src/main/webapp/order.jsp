@@ -6,7 +6,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Success!</title>
+<title>Order Details</title>
+<link href="index.css" rel="stylesheet" />
+<style>
+	a {
+	    padding: 3px 3px;
+	    border-radius: 3px;
+	    color: buttontext;
+	    background-color: buttonface;
+	    text-decoration: none;
+	    text-align: center;
+	}
+	
+	.mod {
+		display: inline-flex;
+	}
+	
+	li {
+		text-align: center;
+		color: white;
+	}
+	
+	ul {
+		list-style-type: none;
+	}
+	
+</style>
 </head>
 <body>
 <h1>Order Details: </h1>
