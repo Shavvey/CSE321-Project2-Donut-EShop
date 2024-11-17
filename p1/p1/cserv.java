@@ -65,8 +65,9 @@ public class cserv extends HttpServlet {
 
     try (Connection conn = DriverManager.getConnection(
              "jdbc:mysql://localhost:3306/donutdb", "root", "colej123");) {
-      String sql = "INSERT INTO doughnut_orders (Name, CardNumber, Total, " +
-                   "Timestamp, Status, TransactionLog) VALUES (?, ?, ?, ?, ?, ?);";
+      String sql =
+          "INSERT INTO doughnut_orders (Name, CardNumber, Total, "
+          + "Timestamp, Status, TransactionLog) VALUES (?, ?, ?, ?, ?, ?);";
 
       try (PreparedStatement stmt = conn.prepareStatement(sql)) {
         Date date = new Date(Calendar.getInstance().getTimeInMillis());
@@ -80,52 +81,56 @@ public class cserv extends HttpServlet {
         // create a new running log of all transactions
         String log = "";
         for (Donut d : cart) {
-        	int ammount = d.getQuantity();
-        	double donutPrice = d.getQuantity() * Double.parseDouble(d.getPrice());
-        	String cakeType = d.getType();
-        	String flavorType = d.getFlavor();
-        	String transactionEntry = String.format("%d Donut(s) of type %s with a flavor of %s for %.2f",
-        			ammount, cakeType, flavorType, donutPrice);
-        	if(itrs != last) {
-        		transactionEntry = transactionEntry.concat(","); // concat comma if this isn't the last cart entry
-        	}
-        	// concat each transaction entry into a log of transactions
-        	log += transactionEntry;
-        	itrs++;
-        	
+          int ammount = d.getQuantity();
+          double donutPrice =
+              d.getQuantity() * Double.parseDouble(d.getPrice());
+          String cakeType = d.getType();
+          String flavorType = d.getFlavor();
+          String transactionEntry = String.format(
+              "%d Donut(s) of type %s with a flavor of %s for %.2f", ammount,
+              cakeType, flavorType, donutPrice);
+          if (itrs != last) {
+            transactionEntry = transactionEntry.concat(
+                ","); // concat comma if this isn't the last cart entry
+          }
+          // concat each transaction entry into a log of transactions
+          log += transactionEntry;
+          itrs++;
         }
-        System.out.println("Created log: " + log);
         stmt.setString(6, log);
         int rowsUpdated = stmt.executeUpdate();
         if (rowsUpdated > 0) {
           for (Donut d : cart) {
-        	  String getMenuItem = "SELECT AvailableQuantity FROM doughnut_menu WHERE ProductKey = ?";
-              PreparedStatement getMenuItemStmt = conn.prepareStatement(getMenuItem);
-              getMenuItemStmt.setInt(1,d.getDonutID());   
-              if (getMenuItemStmt.executeQuery() != null) {
-            	  ResultSet rs = getMenuItemStmt.executeQuery();
-            	  ResultSetMetaData rsmd = rs.getMetaData();
-            	  int columnsNumber = rsmd.getColumnCount();
-            	
-            	  if(rs.next()) {
-            		  String colVal = rs.getString(1);
-            		  int aq = Integer.parseInt(colVal);
-            		  System.out.println(aq);           		
-            		  aq -= d.getQuantity();
-            		  String updateMenuItem = "UPDATE doughnut_menu SET AvailableQuantity = ? WHERE ProductKey = ?";
-                	  PreparedStatement updateMenuStmt = conn.prepareStatement(updateMenuItem);
-                	  updateMenuStmt.setInt(1, aq);
-                	  updateMenuStmt.setInt(2, d.getDonutID());
-                	  int err = updateMenuStmt.executeUpdate();          
-            	  }
-            	 
-              } else {
-            	  System.err.println("Could not execute!");
+            String getMenuItem = "SELECT AvailableQuantity FROM " +
+                                 "doughnut_menu WHERE ProductKey = ?";
+            PreparedStatement getMenuItemStmt =
+                conn.prepareStatement(getMenuItem);
+            getMenuItemStmt.setInt(1, d.getDonutID());
+            if (getMenuItemStmt.executeQuery() != null) {
+              ResultSet rs = getMenuItemStmt.executeQuery();
+              ResultSetMetaData rsmd = rs.getMetaData();
+              int columnsNumber = rsmd.getColumnCount();
+
+              if (rs.next()) {
+                String colVal = rs.getString(1);
+                int aq = Integer.parseInt(colVal);
+                System.out.println(aq);
+                aq -= d.getQuantity();
+                String updateMenuItem =
+                    "UPDATE doughnut_menu SET AvailableQuantity = ? WHERE " +
+                    "ProductKey = ?";
+                PreparedStatement updateMenuStmt =
+                    conn.prepareStatement(updateMenuItem);
+                updateMenuStmt.setInt(1, aq);
+                updateMenuStmt.setInt(2, d.getDonutID());
+                int err = updateMenuStmt.executeUpdate();
               }
-             
-              
+
+            } else {
+              System.err.println("Could not execute!");
+            }
           }
-          
+
           request.getRequestDispatcher("order.jsp").forward(request, response);
         } else {
           response.getWriter().write("Inserted values into the table");

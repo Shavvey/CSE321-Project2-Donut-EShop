@@ -71,7 +71,6 @@
           		 %> <p> <%=entry %> </p> <%
           	 }
           %>
-       <% }%>
 		    <form action="eserv" method="POST">
                  <input type="hidden" name="OrderID" value="<%= o.getOrderID() %>" />
                     <input type="hidden" name="name" value="<%= o.getName() %>" />
@@ -82,6 +81,7 @@
           </form>
 
 	</div>
+   <% }%>
 <%} %>
 <br/>
 <center><a href="mserv">Back to Menu</a></center>
