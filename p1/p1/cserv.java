@@ -66,7 +66,7 @@ public class cserv extends HttpServlet {
     try (Connection conn = DriverManager.getConnection(
              "jdbc:mysql://localhost:3306/donutdb", "root", "colej123");) {
       String sql = "INSERT INTO doughnut_orders (Name, CardNumber, Total, " +
-                   "Timestamp, Status) VALUES (?, ?, ?, ?, ?);";
+                   "Timestamp, Status, TransactionLog) VALUES (?, ?, ?, ?, ?, ?);";
 
       try (PreparedStatement stmt = conn.prepareStatement(sql)) {
         Date date = new Date(Calendar.getInstance().getTimeInMillis());
@@ -75,6 +75,27 @@ public class cserv extends HttpServlet {
         stmt.setFloat(3, total);
         stmt.setDate(4, date);
         stmt.setString(5, status);
+        int itrs = 0;
+        int last = cart.size() - 1;
+        // create a new running log of all transactions
+        String log = "";
+        for (Donut d : cart) {
+        	int ammount = d.getQuantity();
+        	double donutPrice = d.getQuantity() * Double.parseDouble(d.getPrice());
+        	String cakeType = d.getType();
+        	String flavorType = d.getFlavor();
+        	String transactionEntry = String.format("%d donut(s) of type %s with a flavor of %s for %.2f",
+        			ammount, cakeType, flavorType, donutPrice);
+        	if(itrs != last) {
+        		transactionEntry = transactionEntry.concat(","); // concat comma if this isn't the last cart entry
+        	}
+        	// concat each transaction entry into a log of transactions
+        	log += transactionEntry;
+        	itrs++;
+        	
+        }
+        System.out.println("Created log: " + log);
+        stmt.setString(6, log);
         int rowsUpdated = stmt.executeUpdate();
         if (rowsUpdated > 0) {
           for (Donut d : cart) {

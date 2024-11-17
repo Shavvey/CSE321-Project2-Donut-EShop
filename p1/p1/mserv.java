@@ -52,7 +52,7 @@ public class mserv extends HttpServlet {
         
         Donut selectedDonut = new Donut(Integer.parseInt(donutID), donutType, donutFlavor, 
         		donutPrice, donutDesc, Integer.parseInt(quantityAvailable));
-        
+        // try to obtain the session information
         HttpSession session = request.getSession();
         selectedDonut.setQuantity(1);
 

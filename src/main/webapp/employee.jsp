@@ -61,11 +61,17 @@
 	for (Order o : ordersList.list) {
 %><% if (o.isOpen()) { %>	
 	<div class="donut-tile">			
-			<p> <%=o.getOrderID()%> </p>
-			<p> <%=o.getName()%> </p>
-			<p> <%=o.getTimeStamp() %> </p>
-			<p> <%=o.getCardNumber()%> </p>
-			<p> <%=o.getTotal() %> </p>
+			<p> OrderID: <%=o.getOrderID()%> </p>
+			<p> Customer Name: <%=o.getName()%> </p>
+			<p> Time Ordered: <%=o.getTimeStamp() %> </p>
+			<p> Card Number: <%=o.getCardNumber()%> </p>
+			<p> Total: $<%=o.getTotal() %> </p>
+			 <% ArrayList<String> log = o.getLog(); 
+          	 for( String entry : log) {
+          		 %> <p> <%=entry %> </p> <%
+          	 }
+          %>
+       <% }%>
 		    <form action="eserv" method="POST">
                  <input type="hidden" name="OrderID" value="<%= o.getOrderID() %>" />
                     <input type="hidden" name="name" value="<%= o.getName() %>" />
@@ -74,7 +80,7 @@
                     <input type="hidden" name="total" value="<%= o.getTotal() %>" />
             	<button type="submit"> Close </button>
           </form>
-       <% }%>
+
 	</div>
 <%} %>
 <br/>

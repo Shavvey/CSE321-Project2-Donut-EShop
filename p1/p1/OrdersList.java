@@ -30,7 +30,8 @@ public class OrdersList {
 	          float total = records.getFloat("Total");
 	          Date date = records.getDate("Timestamp");
 	          String status = records.getString("Status");
-	          Order order = new Order(OrderID, name, cardNum, total, date, status);
+	          String log = records.getString("TransactionLog");
+	          Order order = new Order(OrderID, name, cardNum, total, date, status,log);
 	          list.add(order);
 	        }
 
