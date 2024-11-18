@@ -5,10 +5,22 @@ body {
   margin: 0;
   padding: 20px;
 }
+img {
+	
+	width: 150px;
+	height: 150px;
+	border-radius: 50px;
+}
+
 
 h1 {
   text-align: center;
   color: #f2f8fa;
+}
+
+h3 {
+	text-align: center;
+	color: white;
 }
 .donut-tile {
   background-color: #fff;

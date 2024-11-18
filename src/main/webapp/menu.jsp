@@ -19,6 +19,7 @@
 		<a href="cserv">Cart</a> <div class="circle"><%= Donut.getTotal(cart) %></div>
 	</div>
     <h1>Sprinkle Squad Donuts</h1>
+    <h3>Click on Donut Name to View More Info! </h3>
     <div class="donut-container">
         <%  
             BuildMenu ourmenu = new BuildMenu();
@@ -28,7 +29,8 @@
             for (Donut d : ourdonuts) {
         %>
             <div class="donut-tile">
-                <h2><a href="serv?donutid=<%= d.getDonutID() %>">Donut <%= d.getDonutID() %></a></h2>
+                <img src="<%= p1.images.getImagePath(d.getDonutID()) %>" class="donut-image" />
+                <h2><a style="text-decoration: none;" href="serv?donutid=<%= d.getDonutID() %>">Donut <%= d.getDonutID() %></a></h2>
                 <p>Type: <%= d.getType() %></p>
                 <p>Flavor: <%= d.getFlavor() %></p>
                 <p>Price: $<%= d.getPrice() %></p>

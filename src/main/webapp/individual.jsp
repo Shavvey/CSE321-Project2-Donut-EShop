@@ -27,6 +27,7 @@ BuildMenu ourmenu = new BuildMenu();
 %>
 
 <center> <div class = "donut-tile"> 
+<img src="<%= p1.images.getImagePath(d.getDonutID()) %>" class="donut-image" />
 <h2> Donut <%= d.getDonutID() %> </h2>
 <p>Type: <%= d.getType() %></p>
 <p> Flavor: <%= d.getFlavor() %></p>
