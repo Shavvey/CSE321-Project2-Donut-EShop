@@ -7,7 +7,14 @@
 <meta charset="UTF-8">
 <title> Some Donut</title>
 <link href="index.css" rel="stylesheet">  
+<style>
+img {
+   max-width: 150px;
+   max-height: 150px;
+}
+</style>
 </head>
+
 <body>
 <%
 		ArrayList<Donut> cart = (ArrayList<Donut>) session.getAttribute("cart");

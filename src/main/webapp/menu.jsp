@@ -7,6 +7,14 @@
     <meta charset="UTF-8">
     <title>Sprinkle Squad Donuts</title>
     <link href="index.css" rel="stylesheet"> 
+    <style>
+    img {
+    	  min-width: 150px;
+    	  min-height: 150px;
+  		  max-width: 150px;
+  		  max-height: 150px;
+    }
+    </style>
 </head>
 <body>
 	<%
