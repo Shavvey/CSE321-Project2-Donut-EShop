@@ -51,7 +51,7 @@
     for (Donut d: cart) {
       %>
       <li>Type: <%= d.getType() %> Flavor: <%= d.getFlavor() %> 
-      Price: <%= d.getPrice() %> Quantity: <%=d.getQuantity()%></li>
+      Price Per Donut: <%= d.getPrice() %> Quantity: <%=d.getQuantity()%></li>
       <%
     }
     %>
